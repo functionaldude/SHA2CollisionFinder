@@ -16,7 +16,7 @@ public class Main {
             input = SHAWorker.getInput();
             conn.addHash(input, hash);
             hash_counter++;
-            if (hash_counter == 5000){
+            if (hash_counter == 500){
                 hash_counter = 0;
                 conn.flushCache();
                 conn.resetCache();

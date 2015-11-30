@@ -9,10 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLConnector{
-    private final String url = "jdbc:mysql://192.168.99.100:32777/hash?rewriteBatchedStatements=true";
+    private final String url = "jdbc:mysql://127.0.0.1:3306/hash?rewriteBatchedStatements=true";
     private static final String user = "root";
     private static final String passwd = "root";
     private Connection connect;
+    private int errno = 0;
 
     private PreparedStatement batchstmt;
 
@@ -56,7 +57,9 @@ public class SQLConnector{
             batchstmt.executeBatch();
             batchstmt.clearBatch();
             batchstmt.close();
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.out.println("duplicate entry" + errno++);
+        }
     }
     public void resetCache() throws SQLException{
         batchstmt = getConn().prepareStatement("INSERT INTO hash (input, hash) VALUES (?, ?)");

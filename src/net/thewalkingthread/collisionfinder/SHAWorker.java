@@ -5,7 +5,6 @@ import org.apache.commons.codec.binary.Hex;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class SHAWorker {
 
@@ -25,7 +24,7 @@ public class SHAWorker {
     }
 
     public static void computeHash(){
-        Integer random = randomGenerator.nextInt(99999999);
+        Integer random = randomGenerator.nextInt(1999999999);
         input = prefix + random.toString();
         byte[] hash_raw = hash(input);
         hash = Hex.encodeHexString(hash_raw);

@@ -12,7 +12,7 @@ public class SHAWorker {
     private static byte[] output = new byte[8];
     private static String prefix;
     private static MessageDigest SHAEncoder;
-    private static Random randomGenerator;
+    private static String suffix;
 
     private static String hash;
     private static String input;
@@ -20,14 +20,14 @@ public class SHAWorker {
     public static void init(String prefix) throws NoSuchAlgorithmException {
         SHAEncoder = MessageDigest.getInstance("SHA-256");
         SHAWorker.prefix = prefix;
-        randomGenerator = new Random();
+        suffix = ((Integer)new Random().nextInt(1999999999)).toString();
     }
 
     public static void computeHash(){
-        Integer random = randomGenerator.nextInt(1999999999);
-        input = prefix + random.toString();
+        input = prefix + suffix;
         byte[] hash_raw = hash(input);
         hash = Hex.encodeHexString(hash_raw);
+        suffix = hash;
     }
 
     private static byte[] hash(String input) {

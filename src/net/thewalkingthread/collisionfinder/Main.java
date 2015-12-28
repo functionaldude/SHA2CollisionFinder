@@ -1,25 +1,22 @@
 package net.thewalkingthread.collisionfinder;
 
 public class Main {
-    public static SQLConnector conn;
 
     public static void main(String[] args) throws Exception{
         SHAWorker.init("13304351232056");
-        conn = new SQLConnector();
         int hash_counter = 0;
         String hash, input;
-
+        FileHandler.init("/home/zoli/Desktop/test.txt");
         //noinspection InfiniteLoopStatement
         while (true){
             SHAWorker.computeHash();
             hash = SHAWorker.getHash();
             input = SHAWorker.getInput();
-            conn.addHash(input, hash);
+            FileHandler.addHash(hash, input);
             hash_counter++;
-            if (hash_counter == 5000){
+            if (hash_counter == 5000000){
                 hash_counter = 0;
-                conn.flushCache();
-                conn.resetCache();
+                FileHandler.writeHash();
             }
         }
     }

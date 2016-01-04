@@ -20,7 +20,7 @@ public class Main {
                 input = SHAWorker.getInput();
                 FileHandler.addHash(hash, input);
                 hash_counter++;
-                if (hash_counter == 5000000){
+                if (hash_counter == 10000000){
                     hash_counter = 0;
                     FileHandler.writeHash();
                 }
@@ -30,7 +30,8 @@ public class Main {
             BufferedReader scanner = new BufferedReader(new FileReader("/Volumes/RuggedHDD/Dokumente/hash_sorted.txt"));
             String prev = scanner.readLine(), line = scanner.readLine();
             String prev_hash = prev.split("-")[0], line_hash = line.split("-")[0];
-            while (line != null){
+            System.out.println(prev_hash);
+            while (true){
                 if (prev_hash.equals(line_hash)){
                     System.out.println("Match found");
                     System.out.println("Hash 1: "+prev);
@@ -39,6 +40,7 @@ public class Main {
                 prev = line;
                 prev_hash = line_hash;
                 line = scanner.readLine();
+                if (line == null) break;
                 line_hash = line.split("-")[0];
             }
             System.out.println("No match");

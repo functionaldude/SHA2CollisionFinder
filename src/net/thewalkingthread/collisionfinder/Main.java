@@ -43,5 +43,11 @@ public class Main {
             }
             System.out.println("No match");
         }
+        if (args[0].equals("-m")){
+            String in1 = args[1], in2 = args[2];
+            SHAWorker.init(null);
+            System.out.println("In 1: "+ in1 + " - " + SHAWorker.hash(in1));
+            System.out.println("In 2: "+ in2 + " - " + SHAWorker.hash(in2));
+        }
     }
 }

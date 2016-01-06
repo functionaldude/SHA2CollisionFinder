@@ -25,12 +25,11 @@ public class SHAWorker {
 
     public static void computeHash(){
         input = prefix + suffix;
-        byte[] hash_raw = hash(input);
-        hash = Hex.encodeHexString(hash_raw);
+        hash = hash(input);
         suffix = hash;
     }
 
-    private static byte[] hash(String input) {
+    public static String hash(String input) {
         byte[] bytes = SHAEncoder.digest(input.getBytes());
 
         System.arraycopy(bytes, 0 * 4, cache[0], 0, 4);
@@ -54,7 +53,7 @@ public class SHAWorker {
         xor_cache = XOR(xor_cache, cache[6]);
         System.arraycopy(xor_cache, 0, output, 4, 4);
 
-        return output;
+        return Hex.encodeHexString(output);
     }
 
     private static byte[] XOR(byte[] buffer1, byte[] buffer2){

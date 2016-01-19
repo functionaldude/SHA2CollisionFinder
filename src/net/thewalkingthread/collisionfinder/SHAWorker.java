@@ -32,8 +32,8 @@ public class SHAWorker {
     public static String hash(String input) {
         byte[] bytes = SHAEncoder.digest(input.getBytes());
 
-        System.arraycopy(bytes, 0 * 4, cache[0], 0, 4);
-        System.arraycopy(bytes, 1 * 4, cache[1], 0, 4);
+        System.arraycopy(bytes, 0, cache[0], 0, 4);
+        System.arraycopy(bytes, 4, cache[1], 0, 4);
         System.arraycopy(bytes, 2 * 4, cache[2], 0, 4);
         System.arraycopy(bytes, 3 * 4, cache[3], 0, 4);
         System.arraycopy(bytes, 4 * 4, cache[4], 0, 4);

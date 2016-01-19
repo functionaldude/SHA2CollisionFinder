@@ -10,7 +10,7 @@ public class Main {
             SHAWorker.init("13304351232056");
             int hash_counter = 0;
             String hash, input;
-            FileHandler.init("/media/zoli/RuggedHDD/Dokumente/hash.txt");
+            FileHandler.init(args[1] + "hash.txt");
             //noinspection InfiniteLoopStatement
             while (true){
                 SHAWorker.computeHash();
@@ -25,7 +25,7 @@ public class Main {
             }
         }
         if (args[0].equals("-c")){
-            BufferedReader scanner = new BufferedReader(new FileReader("/media/zoli/RuggedHDD/Dokumente/hash_sorted.txt"));
+            BufferedReader scanner = new BufferedReader(new FileReader(args[1] + "hash_sorted.txt"));
             String[] prev = scanner.readLine().split("-"), line = scanner.readLine().split("-");
             while (true){
                 if (prev[0].equals(line[0]) && !prev[1].equals(line[1])){
@@ -44,8 +44,8 @@ public class Main {
         if (args[0].equals("-m")){
             String in1 = args[1], in2 = args[2];
             SHAWorker.init(null);
-            System.out.println("In 1: "+ in1 + " - " + SHAWorker.hash(in1));
-            System.out.println("In 2: "+ in2 + " - " + SHAWorker.hash(in2));
+            System.out.println("In 1: "+ in1 + " -> " + SHAWorker.hash(in1));
+            System.out.println("In 2: "+ in2 + " -> " + SHAWorker.hash(in2));
         }
     }
 }
